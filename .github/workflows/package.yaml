@@ -20,5 +20,5 @@ jobs:
       - run: mkdir build && cp target/*.jar staging
       - uses: actions/upload-artifact@v3
         with:
-        name: Package
-        path: build
+          name: Package
+          path: build
