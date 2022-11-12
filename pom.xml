@@ -19,6 +19,7 @@
         <testcontainers.version>1.17.4</testcontainers.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <hibernate.version>5.6.14.Final</hibernate.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
     <dependencies>
         <dependency>
@@ -71,6 +72,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -131,6 +133,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
                         <path>
                             <groupId>org.mapstruct</groupId>
