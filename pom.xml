@@ -61,12 +61,16 @@
         </dependency>
 
         <!--Telegram SDK-->
+<!--        <dependency>-->
+<!--            <groupId>org.telegram</groupId>-->
+<!--            <artifactId>telegrambots</artifactId>-->
+<!--            <version>${telegrambots.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.telegram</groupId>
-            <artifactId>telegrambots</artifactId>
+            <artifactId>telegrambots-spring-boot-starter</artifactId>
             <version>${telegrambots.version}</version>
         </dependency>
-
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
