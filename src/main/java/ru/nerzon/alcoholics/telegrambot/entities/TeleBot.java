@@ -1,12 +1,12 @@
-package ru.nerzon.alcoholics.telegrambot.entity;
+package ru.nerzon.alcoholics.telegrambot.entities;
 
 
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
+import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import ru.nerzon.alcoholics.telegrambot.config.TelegramConfig;
-import ru.nerzon.alcoholics.telegrambot.handler.MessageHandler;
-import ru.nerzon.alcoholics.telegrambot.handler.CallbackQueryHandler;
+import ru.nerzon.alcoholics.telegrambot.handlers.MessageHandler;
+import ru.nerzon.alcoholics.telegrambot.handlers.CallbackQueryHandler;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
@@ -17,30 +17,36 @@ import java.io.IOException;
 
 
 @Component
-
 public class TeleBot extends TelegramWebhookBot {
+    private final MessageHandler messageHandler;
+    private final CallbackQueryHandler callbackQueryHandler;
+    private final TelegramConfig telegramConfig;
+
+    private final SetWebhook setWebhook;
+
+    public TeleBot(MessageHandler messageHandler, CallbackQueryHandler callbackQueryHandler, TelegramConfig telegramConfig) {
+        this.messageHandler = messageHandler;
+        this.callbackQueryHandler = callbackQueryHandler;
+        this.telegramConfig = telegramConfig;
+        this.setWebhook = new SetWebhook(this.telegramConfig.getWebhookPath());
+    }
+
     @Override
     public String getBotUsername() {
-        return new TelegramConfig().getName();
+        return this.telegramConfig.getName();
     }
 
     @Override
     public String getBotToken() {
-        return new TelegramConfig().getToken();
+        return this.telegramConfig.getToken();
     }
 
     @Override
     public String getBotPath() {
-        return new TelegramConfig().getWebhook();
+        return this.telegramConfig.getWebhookPath();
     }
 
-    MessageHandler messageHandler;
-    CallbackQueryHandler callbackQueryHandler;
 
-    public TeleBot(MessageHandler messageHandler, CallbackQueryHandler callbackQueryHandler) {
-        this.messageHandler = messageHandler;
-        this.callbackQueryHandler = callbackQueryHandler;
-    }
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
@@ -50,7 +56,7 @@ public class TeleBot extends TelegramWebhookBot {
             return null;
         }
     }
-    TelegramConfig telegramConfig = new TelegramConfig();
+
 
     @SneakyThrows
     private BotApiMethod<?> handleUpdate(Update update) throws IOException {
@@ -65,4 +71,6 @@ public class TeleBot extends TelegramWebhookBot {
         }
         return null;
     }
+
+
 }
