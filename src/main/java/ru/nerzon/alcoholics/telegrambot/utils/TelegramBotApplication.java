@@ -1,4 +1,4 @@
-package ru.nerzon.alcoholics.telegrambot;
+package ru.nerzon.alcoholics.telegrambot.utils;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

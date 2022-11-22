@@ -11,7 +11,7 @@ public interface TaskRepo {
 
     public void deleteTask(Task task);
 
-    public Task getTaskByNumber(Long number);
+    public Task getTaskById(Long number);
 
     public List<Task> getTasks();
 

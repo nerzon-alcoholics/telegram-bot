@@ -8,7 +8,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Component
 @Entity(name = "task")
@@ -18,27 +17,25 @@ import java.time.LocalDateTime;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "task_number", nullable = false)
+    @Column(name = "id", nullable = false)
+    Long id;
+
+    @Column(name = "number", nullable = false)
     Long number;
 
-    @Column(name = "task_module")
+    @Column(name = "module")
     String module;
 
-    @Column(name = "task_name", nullable = false)
+    @Column(name = "name", nullable = false)
     String name;
 
-    @Column(name = "task_executor")
+    @Column(name = "executor")
     String executor;
 
-    @Column(name = "task_description", nullable = false)
+    @Column(name = "executor_id", nullable = false)
+    Long executor_id;
+
+    @Column(name = "description", nullable = false)
     String description;
 
-    @Column(name = "task_status", nullable = false)
-    String status;
-
-    @Column(name = "task_time_evaluation")
-    String timeEvaluation;
-
-    @Column(name = "task_created_at")
-    LocalDateTime createdAt;
 }
