@@ -1,5 +1,6 @@
 package ru.nerzon.alcoholics.telegrambot.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import ru.nerzon.alcoholics.telegrambot.DAO.TaskRepo;
@@ -7,7 +8,7 @@ import ru.nerzon.alcoholics.telegrambot.entities.Task;
 import ru.nerzon.alcoholics.telegrambot.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
-
+@Slf4j
 public class TaskService implements TaskRepo {
 
     @Override

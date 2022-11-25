@@ -8,9 +8,10 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Component
-@Entity(name = "task")
+@Entity(name = "tasks")
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -32,10 +33,13 @@ public class Task {
     @Column(name = "executor")
     String executor;
 
-    @Column(name = "executor_id", nullable = false)
+    @Column(name = "executor_id")
     Long executor_id;
 
     @Column(name = "description", nullable = false)
     String description;
+
+    @Column(name = "created_at")
+    LocalDateTime localDateTime;
 
 }
