@@ -4,7 +4,7 @@ import ru.nerzon.alcoholics.telegrambot.entities.Task;
 
 import java.util.List;
 
-public interface TaskRepo {
+public class TaskRepo {
     public void addTask(Task task);
 
     public void updateTask(Task task);

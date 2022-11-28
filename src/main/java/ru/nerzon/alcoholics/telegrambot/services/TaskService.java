@@ -9,7 +9,7 @@ import ru.nerzon.alcoholics.telegrambot.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
 @Slf4j
-public class TaskService implements TaskRepo {
+public class TaskService extends TaskRepo {
 
     @Override
     public void addTask(Task task) {
@@ -51,6 +51,6 @@ public class TaskService implements TaskRepo {
 
     @Override
     public List<Task> getMyTasks(String executor) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 }
