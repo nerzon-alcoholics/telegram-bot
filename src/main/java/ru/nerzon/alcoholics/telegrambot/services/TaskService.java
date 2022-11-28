@@ -1,56 +1,33 @@
 package ru.nerzon.alcoholics.telegrambot.services;
 
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.nerzon.alcoholics.telegrambot.DAO.TaskRepo;
 import ru.nerzon.alcoholics.telegrambot.entities.Task;
-import ru.nerzon.alcoholics.telegrambot.utils.HibernateSessionFactoryUtil;
 
 import java.util.List;
-@Slf4j
-public class TaskService extends TaskRepo {
 
-    @Override
-    public void addTask(Task task) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.save(task);
-        transaction.commit();
-        session.close();
+public class TaskService {
+
+    @Autowired
+    private static TaskRepo taskRepo;
+
+    public Task getTaskById(Long id){
+        return taskRepo.getTaskById(id);
     }
 
-    @Override
-    public void updateTask(Task task) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.update(task);
-        transaction.commit();
-        session.close();
+    public List<Task> getTasks(){
+        return taskRepo.getTasks();
     }
 
-    @Override
-    public void deleteTask(Task task) {
-        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(task);
-        transaction.commit();
-        session.close();
+    public void updateTask(Task task){
+        taskRepo.updateTask(task);
     }
 
-    @Override
-    public Task getTaskById(Long id) {
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(Task.class, id);
+    public void deleteTask(Task task){
+        taskRepo.deleteTask(task);
     }
 
-    @Override
-    public List<Task> getTasks() {
-        List<Task> tasks = (List<Task>)  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From task").list();
-        return tasks;
-    }
-
-    @Override
-    public List<Task> getMyTasks(String executor) {
-        throw new UnsupportedOperationException();
+    public List<Task> getMyTasks(Long executor_id){
+        return taskRepo.getMyTasks(executor_id);
     }
 }
