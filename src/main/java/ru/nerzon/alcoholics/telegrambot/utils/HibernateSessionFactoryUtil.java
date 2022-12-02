@@ -5,10 +5,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.nerzon.alcoholics.telegrambot.config.HibernateConfig;
 import ru.nerzon.alcoholics.telegrambot.entities.Task;
 
 @Slf4j
+@Component
 public class HibernateSessionFactoryUtil {
     private static SessionFactory sessionFactory;
 

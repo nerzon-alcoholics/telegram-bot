@@ -30,9 +30,6 @@ public class Task {
     @Column(name = "name", nullable = false)
     String name;
 
-    @Column(name = "executor")
-    String executor;
-
     @Column(name = "executor_id")
     Long executor_id;
 
