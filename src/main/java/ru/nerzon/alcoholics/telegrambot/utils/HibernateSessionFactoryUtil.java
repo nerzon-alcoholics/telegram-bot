@@ -12,19 +12,16 @@ import ru.nerzon.alcoholics.telegrambot.entities.Task;
 @Slf4j
 @Component
 public class HibernateSessionFactoryUtil {
+
+    private static HibernateConfig hibernateConfig = new HibernateConfig();
     private static SessionFactory sessionFactory;
-
-    @Autowired
-    private static HibernateConfig hibernateConfig;
-
     private HibernateSessionFactoryUtil() {}
-
     public static SessionFactory getSessionFactory() {
 
         if (sessionFactory == null) {
             try {
-                Configuration configuration = new Configuration().configure();
-                configuration.addProperties(hibernateConfig.getHibernateProperties());
+                Configuration configuration = new Configuration();
+                configuration.setProperties(hibernateConfig.getProperties());
                 configuration.addAnnotatedClass(Task.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());

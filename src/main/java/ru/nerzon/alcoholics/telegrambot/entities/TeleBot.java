@@ -2,6 +2,7 @@ package ru.nerzon.alcoholics.telegrambot.entities;
 
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import ru.nerzon.alcoholics.telegrambot.config.TelegramConfig;
@@ -15,7 +16,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.io.IOException;
 
-
+@Slf4j
 @Component
 public class TeleBot extends TelegramWebhookBot {
     private final MessageHandler messageHandler;
@@ -51,6 +52,7 @@ public class TeleBot extends TelegramWebhookBot {
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
         try {
+            log.info("onWebhookUpdateReceived");
             return handleUpdate(update);
         } catch (Exception e) {
             return null;
@@ -66,6 +68,7 @@ public class TeleBot extends TelegramWebhookBot {
         } else {
             Message message = update.getMessage();
             if (message != null) {
+                log.info("handleUpdate");
                 return messageHandler.answerMessage(update.getMessage());
             }
         }

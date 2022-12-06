@@ -1,44 +1,40 @@
 package ru.nerzon.alcoholics.telegrambot.config;
 
 
+
+
+
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
-@ConfigurationProperties(prefix = "hibernate.connection")
+
+@Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@ConfigurationProperties(prefix = "hibernate")
 public class HibernateConfig {
-
-    private String url;
-
-    private String driver;
-
-    private String username;
-
-    private String password;
-
-    private String dialect;
-
-    private String hbm2ddl;
-
-    private String showSql;
-
-    private String formatSql;
-
-
-    private final Properties hibernateProperties = new Properties();
-    public HibernateConfig(){
-        hibernateProperties.setProperty("connection.url", url);
-        hibernateProperties.setProperty("connection.driver_class", driver);
-        hibernateProperties.setProperty("connection.username", username);
-        hibernateProperties.setProperty("connection.password", password);
-        hibernateProperties.setProperty("dialect", dialect);
-        hibernateProperties.setProperty("hbm2ddl.auto", hbm2ddl);
-        hibernateProperties.setProperty("show_sql", showSql);
-        hibernateProperties.setProperty("format_sql", formatSql);
+    String connectionUrl;
+    String connectionDriver;
+    String connectionUsername;
+    String connectionPassword;
+    String dialect;
+    String hbm2ddl;
+    String showSql;
+    String formatSql;
+    public Properties getProperties(){
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.connection.url", this.connectionUrl);
+        properties.setProperty("hibernate.connection.driver", this.connectionDriver);
+        properties.setProperty("hibernate.connection.username", this.connectionUsername);
+        properties.setProperty("hibernate.connection.password", this.connectionPassword);
+        properties.setProperty("hibernate.dialect", this.dialect);
+        properties.setProperty("hibernate.hbm2ddl", this.hbm2ddl);
+        properties.setProperty("hibernate.show_sql", this.showSql);
+        properties.setProperty("hibernate.format_sql", this.formatSql);
+        return properties;
     }
 
-    public Properties getHibernateProperties(){
-        return this.hibernateProperties;
-    }
 }

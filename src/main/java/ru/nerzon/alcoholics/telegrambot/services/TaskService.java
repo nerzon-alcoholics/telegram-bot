@@ -1,37 +1,40 @@
 package ru.nerzon.alcoholics.telegrambot.services;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.nerzon.alcoholics.telegrambot.DAO.TaskRepoImpl;
 import ru.nerzon.alcoholics.telegrambot.entities.Task;
 
 import java.util.List;
 
+@Slf4j
 public class TaskService {
 
-    @Autowired
-    private static TaskRepoImpl taskRepo;
+
+    private final TaskRepoImpl taskRepoImpl = new TaskRepoImpl();
 
     public Task getTaskById(Long id){
-        return taskRepo.getTaskById(id);
+        return taskRepoImpl.getTaskById(id);
     }
 
     public List<Task> getTasks(){
-        return taskRepo.getTasks();
+        return taskRepoImpl.getTasks();
     }
 
     public void updateTask(Task task){
-        taskRepo.updateTask(task);
+        taskRepoImpl.updateTask(task);
     }
 
     public void deleteTask(Task task){
-        taskRepo.deleteTask(task);
+        taskRepoImpl.deleteTask(task);
     }
 
     public void addTask(Task task){
-        taskRepo.addTask(task);
+        log.info("service");
+        taskRepoImpl.addTask(task);
     }
 
     public List<Task> getMyTasks(Long executor_id){
-        return taskRepo.getMyTasks(executor_id);
+        return taskRepoImpl.getMyTasks(executor_id);
     }
 }
