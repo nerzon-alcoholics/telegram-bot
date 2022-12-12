@@ -1,4 +1,4 @@
-package ru.nerzon.alcoholics.telegrambot.entities;
+package ru.nerzon.alcoholics.telegrambot.domain;
 
 
 import lombok.AccessLevel;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Component
+
 @Entity(name = "tasks")
 @Getter
 @Setter
@@ -21,22 +21,28 @@ public class Task {
     @Column(name = "id", nullable = false)
     Long id;
 
-    @Column(name = "number", nullable = false)
-    Long number;
-
-    @Column(name = "module")
-    String module;
+    @Column(name = "external_id", nullable = false)
+    Long external_id;
 
     @Column(name = "name", nullable = false)
     String name;
 
-    @Column(name = "executor_id")
-    Long executor_id;
-
     @Column(name = "description", nullable = false)
     String description;
 
+    @Column(name = "module")
+    String module;
+
+    @Column(name = "executor_id")
+    Long executor_id;
+
+
     @Column(name = "created_at")
     LocalDateTime localDateTime;
+
+    @Override
+    public String toString(){
+        return "Task#" + id.toString();
+    }
 
 }

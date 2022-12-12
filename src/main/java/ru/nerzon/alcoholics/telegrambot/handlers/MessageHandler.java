@@ -1,13 +1,16 @@
 package ru.nerzon.alcoholics.telegrambot.handlers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-import ru.nerzon.alcoholics.telegrambot.entities.Task;
+import ru.nerzon.alcoholics.telegrambot.domain.Task;
 import ru.nerzon.alcoholics.telegrambot.services.TaskService;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 
 @Component
@@ -19,7 +22,7 @@ public class MessageHandler {
     public BotApiMethod<?> answerMessage(Message message) throws UnsupportedOperationException {
         if(message.hasText()){
             log.info("answerMessage");
-            return test(message);
+            return echo(message);
         }
         throw new UnsupportedOperationException();
     }
@@ -29,18 +32,6 @@ public class MessageHandler {
         sendMessage.setText(message.getText());
         return sendMessage;
     }
-    private BotApiMethod<?> test(Message message){
-        log.info("enter");
-        Task task = new Task();
-        task.setName("1");
-        task.setDescription("1");
-        task.setNumber(1L);
-        taskService.addTask(task);
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(message.getChatId());
-        sendMessage.setText(message.getText());
-        log.info("test");
-        return sendMessage;
-    }
+
 
 }
