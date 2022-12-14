@@ -1,6 +1,5 @@
 package ru.nerzon.alcoholics.telegrambot;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -15,7 +14,6 @@ import javax.transaction.Transactional;
 
 @SpringBootApplication
 @EnableConfigurationProperties(TelegramConfig.class)
-@Slf4j
 public class TelegramBotApplication {
 
     public static void main(String[] args) {
@@ -31,9 +29,7 @@ public class TelegramBotApplication {
         task.setName("1");
         task.setDescription("1");
         task.setExternal_id(1L);
-        log.info("Saving task {}", task);
         entityManager.persist(task);
-        log.info("Saved {}", task);
     }
 
 }

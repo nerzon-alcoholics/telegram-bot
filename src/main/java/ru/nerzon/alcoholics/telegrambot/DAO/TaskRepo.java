@@ -1,6 +1,8 @@
 package ru.nerzon.alcoholics.telegrambot.DAO;
 
-import org.springframework.data.repository.CrudRepository;
-import ru.nerzon.alcoholics.telegrambot.domain.Task;
+import org.springframework.stereotype.Repository;
 
-public interface TaskRepo extends CrudRepository<Task, Long> {}
+@Repository
+public interface TaskRepo{
+
+}
