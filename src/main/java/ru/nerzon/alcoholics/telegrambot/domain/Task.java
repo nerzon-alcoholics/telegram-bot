@@ -3,8 +3,10 @@ package ru.nerzon.alcoholics.telegrambot.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -14,31 +16,32 @@ import java.time.LocalDateTime;
 @Entity(name = "tasks")
 @Getter
 @Setter
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    Long id;
+    private Long id;
 
     @Column(name = "external_id", nullable = false)
-    Long external_id;
+    private Long externalId;
 
     @Column(name = "name", nullable = false)
-    String name;
+    private String name;
 
     @Column(name = "description", nullable = false)
-    String description;
+    private String description;
 
     @Column(name = "module")
-    String module;
+    private String module;
 
     @Column(name = "executor_id")
-    Long executor_id;
+    private Long executorId;
 
 
     @Column(name = "created_at")
-    LocalDateTime localDateTime;
+    private LocalDateTime localDateTime;
 
     @Override
     public String toString(){

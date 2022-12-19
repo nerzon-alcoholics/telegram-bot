@@ -1,4 +1,4 @@
-package ru.nerzon.alcoholics.telegrambot.domain;
+package ru.nerzon.alcoholics.telegrambot.utils;
 
 
 import lombok.SneakyThrows;

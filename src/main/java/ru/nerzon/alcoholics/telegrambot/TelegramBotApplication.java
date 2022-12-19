@@ -19,17 +19,5 @@ public class TelegramBotApplication {
     public static void main(String[] args) {
         SpringApplication.run(TelegramBotApplication.class, args);
     }
-    @PersistenceContext
-    EntityManager entityManager;
-
-    @Transactional
-    @PostConstruct
-    public void testCreate() {
-        var task = new Task();
-        task.setName("1");
-        task.setDescription("1");
-        task.setExternal_id(1L);
-        entityManager.persist(task);
-    }
 
 }
