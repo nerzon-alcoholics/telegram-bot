@@ -1,11 +1,9 @@
 package ru.nerzon.alcoholics.telegrambot.domain;
 
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +11,11 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
-@Entity(name = "tasks")
+@Entity
+@Table(name = "tasks")
 @Getter
 @Setter
+@Component
 @NoArgsConstructor
 public class Task {
     @Id
@@ -39,13 +39,12 @@ public class Task {
     @Column(name = "executor_id")
     private Long executorId;
 
-
     @Column(name = "created_at")
     private LocalDateTime localDateTime;
 
     @Override
     public String toString(){
-        return "Task";
+        return this.name;
     }
 
 }

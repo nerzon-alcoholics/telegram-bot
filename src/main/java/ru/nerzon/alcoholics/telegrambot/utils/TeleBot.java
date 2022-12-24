@@ -3,6 +3,7 @@ package ru.nerzon.alcoholics.telegrambot.utils;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import ru.nerzon.alcoholics.telegrambot.config.TelegramConfig;
@@ -24,6 +25,7 @@ public class TeleBot extends TelegramWebhookBot {
     private final TelegramConfig telegramConfig;
 
     private final SetWebhook setWebhook;
+
 
     public TeleBot(MessageHandler messageHandler, CallbackQueryHandler callbackQueryHandler, TelegramConfig telegramConfig) {
         this.messageHandler = messageHandler;
