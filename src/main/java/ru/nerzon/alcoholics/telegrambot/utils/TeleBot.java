@@ -3,17 +3,16 @@ package ru.nerzon.alcoholics.telegrambot.utils;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.telegram.telegrambots.bots.TelegramWebhookBot;
-import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
-import ru.nerzon.alcoholics.telegrambot.config.TelegramConfig;
-import ru.nerzon.alcoholics.telegrambot.handlers.MessageHandler;
-import ru.nerzon.alcoholics.telegrambot.handlers.CallbackQueryHandler;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.nerzon.alcoholics.telegrambot.config.TelegramConfig;
+import ru.nerzon.alcoholics.telegrambot.handlers.CallbackQueryHandler;
+import ru.nerzon.alcoholics.telegrambot.handlers.MessageHandler;
 
 import java.io.IOException;
 
@@ -54,7 +53,6 @@ public class TeleBot extends TelegramWebhookBot {
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
         try {
-            log.info("onWebhookUpdateReceived");
             return handleUpdate(update);
         } catch (Exception e) {
             return null;
@@ -70,7 +68,6 @@ public class TeleBot extends TelegramWebhookBot {
         } else {
             Message message = update.getMessage();
             if (message != null) {
-                log.info("handleUpdate");
                 return messageHandler.answerMessage(update.getMessage());
             }
         }

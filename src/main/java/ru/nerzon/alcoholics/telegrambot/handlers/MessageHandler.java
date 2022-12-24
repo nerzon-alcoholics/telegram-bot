@@ -1,7 +1,6 @@
 package ru.nerzon.alcoholics.telegrambot.handlers;
 
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
@@ -14,7 +13,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 @Component
-@Slf4j
 public class MessageHandler {
     @Autowired
     private TaskRepoImpl taskRepoImpl;
@@ -22,7 +20,6 @@ public class MessageHandler {
 
     public BotApiMethod<?> answerMessage(Message message) throws UnsupportedOperationException {
         if(message.hasText()){
-            log.info("answerMessage");
             return echo(message);
         }
         throw new UnsupportedOperationException();
